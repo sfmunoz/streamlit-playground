@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import sys
+from datetime import datetime
 
 if not st.runtime.exists():
     cmd = ["bash", "run.sh", *sys.argv]
@@ -32,7 +33,9 @@ with st.form(key="user_info_form"):
     form_data["name"] = st.text_input("Name")
     form_data["height"] = st.text_input("Height")
     form_data["gender"] = st.selectbox("Gender", ["Male", "Female"])
-    form_data["dob"] = st.date_input("DOB")
+    form_data["dob"] = st.date_input(
+        "DOB", min_value=datetime(1900, 1, 1), max_value=datetime.now()
+    )
     submit_button = st.form_submit_button("Submit")
     if submit_button:
         if not all(form_data.values()):
