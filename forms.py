@@ -20,3 +20,24 @@ with st.form(key="my_form"):
     e9 = st.form_submit_button("st.form_submit_button()")
     if e9:
         st.write(e1, e2, e3, e4, e5, e6, e7, e8, e9)
+
+form_data = {
+    "name": None,
+    "height": None,
+    "gender": None,
+    "dob": None,
+}
+
+with st.form(key="user_info_form"):
+    form_data["name"] = st.text_input("Name")
+    form_data["height"] = st.text_input("Height")
+    form_data["gender"] = st.selectbox("Gender", ["Male", "Female"])
+    form_data["dob"] = st.date_input("DOB")
+    submit_button = st.form_submit_button("Submit")
+    if submit_button:
+        if not all(form_data.values()):
+            st.warning("Missing data")
+        else:
+            st.balloons()
+            for k, v in form_data.items():
+                st.write(f"{k}: {v}")
