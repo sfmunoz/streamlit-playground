@@ -13,5 +13,5 @@ st.markdown("**Markdown**")
 st.caption("caption")
 st.divider()
 
-with open("text-elements.py") as fp:
+with open(sys.argv[0]) as fp:
     st.code(fp.read(), "python")
