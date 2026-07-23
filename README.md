@@ -12,3 +12,12 @@ Streamlit playground
 ```
 $ uv sync
 ```
+
+## Run
+
+```
+$ ./run.sh hello-world.py
+(...)
++ uv run streamlit run --server.headless True --server.address 127.0.0.1 --server.port 16666 --logger.level debug hello-world.py
+(...)
+```
