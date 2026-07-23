@@ -5,6 +5,7 @@ Streamlit playground
 ## References
 
 - https://streamlit.io/
+  - https://docs.streamlit.io/develop/api-reference
 - [Streamlit Mini Course - Make Websites With ONLY Python](https://www.youtube.com/watch?v=o8p7uQCGD0U)
 
 ## Install
