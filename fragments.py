@@ -21,8 +21,12 @@ def fragment1():
 def fragment2():
     st.title("fragment-2")
     t = time()
-    if st.button("button-2", help="just fragment-2 time gets updated"):
+    if st.button(
+        "button-2",
+        help="every time gets updated because of 'st.rerun(scope=app)' execution",
+    ):
         t = time()
+        st.rerun(scope="app")
     st.write(f"t2 = {t:.3f}")
 
 
