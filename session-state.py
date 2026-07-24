@@ -2,10 +2,11 @@ import streamlit as st
 import os
 import sys
 
-MODE_RAW = "raw (KO: lags)"
-MODE_CB = "callback (OK)"
+MODE_RAW = "raw"
+MODE_CB = "callback"
 
 MODES = [MODE_RAW, MODE_CB]
+CAPTIONS = ["KO: 'after' lags", "OK: 'before' and 'after' in sync"]
 
 if not st.runtime.exists():
     cmd = ["bash", "run.sh", *sys.argv]
@@ -25,7 +26,7 @@ if "counter" not in st.session_state:
 
 st.title("Session State")
 
-mode = st.radio("mode", MODES, key="mode", persist_state="session")
+mode = st.radio("mode", MODES, captions=CAPTIONS, key="mode", persist_state="session")
 
 st.subheader("Before")
 st.write(
