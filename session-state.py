@@ -29,6 +29,7 @@ mode = st.radio(
     captions=["OK: 'before' and 'after' in sync", "KO: 'after' lags"],
     key="mode",
     persist_state="session",
+    horizontal=True,
 )
 
 st.subheader("Before")
