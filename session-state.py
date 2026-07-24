@@ -2,11 +2,11 @@ import streamlit as st
 import os
 import sys
 
-MODE_RAW = "raw"
 MODE_CB = "callback"
+MODE_RAW = "raw"
 
-MODES = [MODE_RAW, MODE_CB]
-CAPTIONS = ["KO: 'after' lags", "OK: 'before' and 'after' in sync"]
+MODES = [MODE_CB, MODE_RAW]
+CAPTIONS = ["OK: 'before' and 'after' in sync", "KO: 'after' lags"]
 
 if not st.runtime.exists():
     cmd = ["bash", "run.sh", *sys.argv]
@@ -41,13 +41,7 @@ st.write(
 
 st.subheader("Control")
 
-if mode == MODE_RAW:
-    col1, col2 = st.columns(2)
-    if col1.button("inc"):
-        st.session_state.counter += 1
-    if col2.button("reset"):
-        st.session_state.counter = 0
-elif mode == MODE_CB:
+if mode == MODE_CB:
     col1, col2, col3 = st.columns(3)
     with col1:
         st.button("inc+1", on_click=counter_inc, args=(1,))
@@ -55,6 +49,12 @@ elif mode == MODE_CB:
         st.button("inc+2", on_click=counter_inc, args=(2,))
     with col3:
         st.button("reset", on_click=counter_reset)
+elif mode == MODE_RAW:
+    col1, col2 = st.columns(2)
+    if col1.button("inc"):
+        st.session_state.counter += 1
+    if col2.button("reset"):
+        st.session_state.counter = 0
 
 st.subheader("After")
 st.write(
