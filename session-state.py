@@ -3,6 +3,7 @@ import os
 import sys
 
 MODE_CB = "callback"
+MODE_RERUN = "rerun"
 MODE_RAW = "raw"
 
 if not st.runtime.exists():
@@ -25,8 +26,12 @@ st.title("Session State")
 
 mode = st.radio(
     "mode",
-    [MODE_CB, MODE_RAW],
-    captions=["OK: 'before' and 'after' in sync", "KO: 'after' lags"],
+    [MODE_CB, MODE_RERUN, MODE_RAW],
+    captions=[
+        "OK: 'before' and 'after' in sync",
+        "OK: 'before' and 'after' in sync",
+        "KO: 'after' counter lags",
+    ],
     key="mode",
     persist_state="session",
     horizontal=True,
@@ -53,6 +58,14 @@ if mode == MODE_CB:
         st.button("inc+2", on_click=counter_inc, args=(2,))
     with col3:
         st.button("reset", on_click=counter_reset)
+elif mode == MODE_RERUN:
+    col1, col2 = st.columns(2)
+    if col1.button("inc"):
+        st.session_state.counter += 1
+        st.rerun()
+    if col2.button("reset"):
+        st.session_state.counter = 0
+        st.rerun()
 elif mode == MODE_RAW:
     col1, col2 = st.columns(2)
     if col1.button("inc"):
