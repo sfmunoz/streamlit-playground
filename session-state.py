@@ -5,9 +5,6 @@ import sys
 MODE_CB = "callback"
 MODE_RAW = "raw"
 
-MODES = [MODE_CB, MODE_RAW]
-CAPTIONS = ["OK: 'before' and 'after' in sync", "KO: 'after' lags"]
-
 if not st.runtime.exists():
     cmd = ["bash", "run.sh", *sys.argv]
     os.execvp(cmd[0], cmd)
@@ -26,7 +23,13 @@ if "counter" not in st.session_state:
 
 st.title("Session State")
 
-mode = st.radio("mode", MODES, captions=CAPTIONS, key="mode", persist_state="session")
+mode = st.radio(
+    "mode",
+    [MODE_CB, MODE_RAW],
+    captions=["OK: 'before' and 'after' in sync", "KO: 'after' lags"],
+    key="mode",
+    persist_state="session",
+)
 
 st.subheader("Before")
 st.write(
