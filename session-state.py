@@ -42,15 +42,19 @@ st.write(
 st.subheader("Control")
 
 if mode == MODE_RAW:
-    if st.button("inc"):
+    col1, col2 = st.columns(2)
+    if col1.button("inc"):
         st.session_state.counter += 1
-
-    if st.button("reset"):
+    if col2.button("reset"):
         st.session_state.counter = 0
 elif mode == MODE_CB:
-    st.button("inc+1", on_click=counter_inc, args=(1,))
-    st.button("inc+2", on_click=counter_inc, args=(2,))
-    st.button("reset", on_click=counter_reset)
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.button("inc+1", on_click=counter_inc, args=(1,))
+    with col2:
+        st.button("inc+2", on_click=counter_inc, args=(2,))
+    with col3:
+        st.button("reset", on_click=counter_reset)
 
 st.subheader("After")
 st.write(
@@ -62,7 +66,6 @@ st.write(
         ]
     )
 )
-
 
 st.subheader("Session State")
 st.write(st.session_state)
