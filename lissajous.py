@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import altair as alt
 import os
 import sys
 import math
@@ -37,7 +38,7 @@ with st.sidebar:
 
 t = time_points(100)
 a = 1
-b = 1
+b = 2
 fa = 1
 fb = 1.5
 d = 0
@@ -49,12 +50,37 @@ y = b * np.sin(2 * math.pi * fb * t)
 data_xy = pd.DataFrame({"x": x, "y": y})
 data_yx = pd.DataFrame({"x": y, "y": x})
 
+chart_xy = (
+    alt.Chart(data_xy)
+    .mark_circle()
+    .encode(
+        x=alt.X("x", scale=alt.Scale(domain=(-1.1 * a, 1.1 * a))),
+        y=alt.Y("y", scale=alt.Scale(domain=(-1.1 * b, 1.1 * b))),
+    )
+)
+
+chart_yx = (
+    alt.Chart(data_yx)
+    .mark_circle()
+    .encode(
+        x=alt.X("x", scale=alt.Scale(domain=(-1.1 * b, 1.1 * b))),
+        y=alt.Y("y", scale=alt.Scale(domain=(-1.1 * a, 1.1 * a))),
+    )
+)
+
+
 col1, col2 = st.columns(2, border=True)
 
 with col1:
     st.title("x → y")
+    st.subheader("Altair")
+    st.altair_chart(chart_xy)
+    st.subheader("Scatter")
     st.scatter_chart(data_xy, x="x", y="y", size=50)
 
 with col2:
     st.title("y → x")
+    st.subheader("Altair")
+    st.altair_chart(chart_yx)
+    st.subheader("Scatter")
     st.scatter_chart(data_yx, x="y", y="x", size=50)
