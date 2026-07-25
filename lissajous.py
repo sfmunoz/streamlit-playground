@@ -53,8 +53,8 @@ col1, col2 = st.columns(2, border=True)
 
 with col1:
     st.title("x → y")
-    st.scatter_chart(data_xy, x="x", y="y")
+    st.scatter_chart(data_xy, x="x", y="y", size=50)
 
 with col2:
     st.title("y → x")
-    st.scatter_chart(data_yx, x="y", y="x")
+    st.scatter_chart(data_yx, x="y", y="x", size=50)
