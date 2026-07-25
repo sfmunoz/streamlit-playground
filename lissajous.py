@@ -35,7 +35,11 @@ def time_points(segments):
 
 
 with st.sidebar:
-    chart_library = st.radio("Chart library", [CHART_SCATTER, CHART_ALTAIR])
+    chart_library = st.radio(
+        "Chart library",
+        [CHART_SCATTER, CHART_ALTAIR],
+        horizontal=True,
+    )
     st.divider()
     st.title("Lissajous curves")
     st.write(DESC)
