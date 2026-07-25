@@ -83,7 +83,13 @@ col1, col2 = st.columns(2, border=True)
 with col1:
     st.title(f"x → y ({chart_library} chart)")
     if chart_library == CHART_SCATTER:
-        st.scatter_chart(pd.DataFrame({"x": x, "y": y}), x="x", y="y", size=50)
+        st.scatter_chart(
+            pd.DataFrame({"x": x, "y": y, "t": t}),
+            x="x",
+            y="y",
+            color="t",
+            size=50,
+        )
     elif chart_library == CHART_ALTAIR:
         chart_xy = (
             alt.Chart(pd.DataFrame({"x": x, "y": y}))
@@ -98,7 +104,13 @@ with col1:
 with col2:
     st.title(f"y → x ({chart_library} chart)")
     if chart_library == CHART_SCATTER:
-        st.scatter_chart(pd.DataFrame({"x": x, "y": y}), x="y", y="x", size=50)
+        st.scatter_chart(
+            pd.DataFrame({"x": x, "y": y, "t": t}),
+            x="y",
+            y="x",
+            color="t",
+            size=50,
+        )
     elif chart_library == CHART_ALTAIR:
         chart_yx = (
             alt.Chart(pd.DataFrame({"x": y, "y": x}))
