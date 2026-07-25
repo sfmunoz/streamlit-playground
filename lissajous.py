@@ -51,7 +51,7 @@ with st.sidebar:
         "$f_a$", help="x frequency", min_value=0.1, max_value=10.0, step=0.1, value=1.0
     )
     fb = st.slider(
-        "$f_b$", help="y frequency", min_value=0.1, max_value=10.0, step=0.1, value=1.5
+        "$f_b$", help="y frequency", min_value=0.1, max_value=10.0, step=0.1, value=3.0
     )
     d = st.slider(
         "$d$ (multiplied by $\pi$)",
