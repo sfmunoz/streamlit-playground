@@ -54,8 +54,8 @@ chart_xy = (
     alt.Chart(data_xy)
     .mark_circle()
     .encode(
-        x=alt.X("x", scale=alt.Scale(domain=(-1.1 * a, 1.1 * a))),
-        y=alt.Y("y", scale=alt.Scale(domain=(-1.1 * b, 1.1 * b))),
+        x=alt.X("x", title="x", scale=alt.Scale(domain=(-1.1 * a, 1.1 * a))),
+        y=alt.Y("y", title="y", scale=alt.Scale(domain=(-1.1 * b, 1.1 * b))),
     )
 )
 
@@ -63,8 +63,8 @@ chart_yx = (
     alt.Chart(data_yx)
     .mark_circle()
     .encode(
-        x=alt.X("x", scale=alt.Scale(domain=(-1.1 * b, 1.1 * b))),
-        y=alt.Y("y", scale=alt.Scale(domain=(-1.1 * a, 1.1 * a))),
+        x=alt.X("x", title="y", scale=alt.Scale(domain=(-1.1 * b, 1.1 * b))),
+        y=alt.Y("y", title="x", scale=alt.Scale(domain=(-1.1 * a, 1.1 * a))),
     )
 )
 
