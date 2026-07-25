@@ -37,8 +37,8 @@ with st.sidebar:
 
 
 t = time_points(100)
-a = 1
-b = 2
+a = 2
+b = 1
 fa = 1
 fb = 1.5
 d = 0
@@ -46,12 +46,8 @@ d = 0
 x = a * np.sin(2 * math.pi * fa * t + d)
 y = b * np.sin(2 * math.pi * fb * t)
 
-
-data_xy = pd.DataFrame({"x": x, "y": y})
-data_yx = pd.DataFrame({"x": y, "y": x})
-
 chart_xy = (
-    alt.Chart(data_xy)
+    alt.Chart(pd.DataFrame({"x": x, "y": y}))
     .mark_circle()
     .encode(
         x=alt.X("x", title="x", scale=alt.Scale(domain=(-1.1 * a, 1.1 * a))),
@@ -60,7 +56,7 @@ chart_xy = (
 )
 
 chart_yx = (
-    alt.Chart(data_yx)
+    alt.Chart(pd.DataFrame({"x": y, "y": x}))
     .mark_circle()
     .encode(
         x=alt.X("x", title="y", scale=alt.Scale(domain=(-1.1 * b, 1.1 * b))),
@@ -76,11 +72,11 @@ with col1:
     st.subheader("Altair")
     st.altair_chart(chart_xy)
     st.subheader("Scatter")
-    st.scatter_chart(data_xy, x="x", y="y", size=50)
+    st.scatter_chart(pd.DataFrame({"x": x, "y": y}), x="x", y="y", size=50)
 
 with col2:
     st.title("y → x")
     st.subheader("Altair")
     st.altair_chart(chart_yx)
     st.subheader("Scatter")
-    st.scatter_chart(data_yx, x="y", y="x", size=50)
+    st.scatter_chart(pd.DataFrame({"x": x, "y": y}), x="y", y="x", size=50)
