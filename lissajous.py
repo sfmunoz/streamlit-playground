@@ -11,6 +11,9 @@ st.set_page_config(
     layout="wide",
 )
 
+CHART_SCATTER = "scatter"
+CHART_ALTAIR = "altair"
+
 DESC = r"""Ref: [https://en.wikipedia.org/wiki/Lissajous_curve](https://en.wikipedia.org/wiki/Lissajous_curve)
 
 A Lissajous curve is the graph of a system of parametric equations
@@ -32,6 +35,8 @@ def time_points(segments):
 
 
 with st.sidebar:
+    chart_library = st.radio("Chart library", [CHART_SCATTER, CHART_ALTAIR])
+    st.divider()
     st.title("Lissajous curves")
     st.write(DESC)
 
@@ -68,15 +73,15 @@ chart_yx = (
 col1, col2 = st.columns(2, border=True)
 
 with col1:
-    st.title("x → y")
-    st.subheader("Altair")
-    st.altair_chart(chart_xy)
-    st.subheader("Scatter")
-    st.scatter_chart(pd.DataFrame({"x": x, "y": y}), x="x", y="y", size=50)
+    st.title(f"x → y ({chart_library} chart)")
+    if chart_library == CHART_SCATTER:
+        st.scatter_chart(pd.DataFrame({"x": x, "y": y}), x="x", y="y", size=50)
+    elif chart_library == CHART_ALTAIR:
+        st.altair_chart(chart_xy)
 
 with col2:
-    st.title("y → x")
-    st.subheader("Altair")
-    st.altair_chart(chart_yx)
-    st.subheader("Scatter")
-    st.scatter_chart(pd.DataFrame({"x": x, "y": y}), x="y", y="x", size=50)
+    st.title(f"y → x ({chart_library} chart)")
+    if chart_library == CHART_SCATTER:
+        st.scatter_chart(pd.DataFrame({"x": x, "y": y}), x="y", y="x", size=50)
+    elif chart_library == CHART_ALTAIR:
+        st.altair_chart(chart_yx)
