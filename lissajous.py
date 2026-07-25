@@ -5,6 +5,10 @@ import os
 import sys
 import math
 
+st.set_page_config(
+    page_title="Lissajous curves",
+    layout="wide",
+)
 
 DESC = r"""Ref: [https://en.wikipedia.org/wiki/Lissajous_curve](https://en.wikipedia.org/wiki/Lissajous_curve)
 
