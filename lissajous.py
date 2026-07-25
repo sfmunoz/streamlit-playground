@@ -42,7 +42,15 @@ x = a * np.sin(2 * math.pi * fa * t + d)
 y = b * np.sin(2 * math.pi * fb * t)
 
 
-data = pd.DataFrame({"x": x, "y": y})
+data_xy = pd.DataFrame({"x": x, "y": y})
+data_yx = pd.DataFrame({"x": y, "y": x})
 
-st.title("x → y")
-st.scatter_chart(data, x="x", y="y")
+col1, col2 = st.columns(2, border=True)
+
+with col1:
+    st.title("x → y")
+    st.scatter_chart(data_xy, x="x", y="y")
+
+with col2:
+    st.title("y → x")
+    st.scatter_chart(data_yx, x="y", y="x")
