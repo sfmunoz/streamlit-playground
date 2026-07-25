@@ -51,25 +51,6 @@ d = 0
 x = a * np.sin(2 * math.pi * fa * t + d)
 y = b * np.sin(2 * math.pi * fb * t)
 
-chart_xy = (
-    alt.Chart(pd.DataFrame({"x": x, "y": y}))
-    .mark_circle()
-    .encode(
-        x=alt.X("x", title="x", scale=alt.Scale(domain=(-1.1 * a, 1.1 * a))),
-        y=alt.Y("y", title="y", scale=alt.Scale(domain=(-1.1 * b, 1.1 * b))),
-    )
-)
-
-chart_yx = (
-    alt.Chart(pd.DataFrame({"x": y, "y": x}))
-    .mark_circle()
-    .encode(
-        x=alt.X("x", title="y", scale=alt.Scale(domain=(-1.1 * b, 1.1 * b))),
-        y=alt.Y("y", title="x", scale=alt.Scale(domain=(-1.1 * a, 1.1 * a))),
-    )
-)
-
-
 col1, col2 = st.columns(2, border=True)
 
 with col1:
@@ -77,6 +58,14 @@ with col1:
     if chart_library == CHART_SCATTER:
         st.scatter_chart(pd.DataFrame({"x": x, "y": y}), x="x", y="y", size=50)
     elif chart_library == CHART_ALTAIR:
+        chart_xy = (
+            alt.Chart(pd.DataFrame({"x": x, "y": y}))
+            .mark_circle()
+            .encode(
+                x=alt.X("x", title="x", scale=alt.Scale(domain=(-1.1 * a, 1.1 * a))),
+                y=alt.Y("y", title="y", scale=alt.Scale(domain=(-1.1 * b, 1.1 * b))),
+            )
+        )
         st.altair_chart(chart_xy)
 
 with col2:
@@ -84,4 +73,12 @@ with col2:
     if chart_library == CHART_SCATTER:
         st.scatter_chart(pd.DataFrame({"x": x, "y": y}), x="y", y="x", size=50)
     elif chart_library == CHART_ALTAIR:
+        chart_yx = (
+            alt.Chart(pd.DataFrame({"x": y, "y": x}))
+            .mark_circle()
+            .encode(
+                x=alt.X("x", title="y", scale=alt.Scale(domain=(-1.1 * b, 1.1 * b))),
+                y=alt.Y("y", title="x", scale=alt.Scale(domain=(-1.1 * a, 1.1 * a))),
+            )
+        )
         st.altair_chart(chart_yx)
