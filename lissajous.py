@@ -54,12 +54,12 @@ with st.sidebar:
         "$f_b$", help="y frequency", min_value=0.1, max_value=10.0, step=0.1, value=1.5
     )
     d = st.slider(
-        "$d$",
-        help="x delta",
+        "$d$ (multiplied by $\pi$)",
+        help="x delta (will be multiplied by $\pi$ when used)",
         min_value=0.0,
-        max_value=2 * math.pi,
-        step=math.pi / 8,
-        value=math.pi / 4,
+        max_value=2.0,
+        step=0.01,
+        value=0.25,
     )
     segments = st.slider(
         "segments",
@@ -75,7 +75,7 @@ with st.sidebar:
 
 t = time_points(segments)
 
-x = a * np.sin(2 * math.pi * fa * t + d)
+x = a * np.sin(2 * math.pi * fa * t + d * math.pi)
 y = b * np.sin(2 * math.pi * fb * t)
 
 col1, col2 = st.columns(2, border=True)
