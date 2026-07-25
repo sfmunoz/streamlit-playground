@@ -26,8 +26,10 @@ def time_points(segments):
     return np.arange(segments) * step
 
 
-st.title("Lissajous curves")
-st.write(DESC)
+with st.sidebar:
+    st.title("Lissajous curves")
+    st.write(DESC)
+
 
 t = time_points(100)
 a = 1
@@ -42,4 +44,5 @@ y = b * np.sin(2 * math.pi * fb * t)
 
 data = pd.DataFrame({"x": x, "y": y})
 
+st.title("x → y")
 st.scatter_chart(data, x="x", y="y")
