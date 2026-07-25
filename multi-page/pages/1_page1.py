@@ -18,5 +18,7 @@ page_names_to_funcs = {
     "page-b": page_b,
 }
 
-demo_name = st.sidebar.selectbox("select a subpage", page_names_to_funcs.keys())
+demo_name = st.sidebar.selectbox(
+    "select a subpage", page_names_to_funcs.keys(), persist_state="session", key="page1"
+)
 page_names_to_funcs[demo_name]()
