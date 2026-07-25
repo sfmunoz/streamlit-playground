@@ -38,19 +38,42 @@ with st.sidebar:
     chart_library = st.radio(
         "Chart library",
         [CHART_SCATTER, CHART_ALTAIR],
+        help=f"Choose between {CHART_SCATTER} and {CHART_ALTAIR}",
         horizontal=True,
+    )
+    a = st.slider(
+        "A", help="x amplitude", min_value=0.1, max_value=5.0, step=0.1, value=2.0
+    )
+    b = st.slider(
+        "B", help="y amplitude", min_value=0.1, max_value=5.0, step=0.1, value=1.0
+    )
+    fa = st.slider(
+        "$f_a$", help="x frequency", min_value=0.1, max_value=10.0, step=0.1, value=1.0
+    )
+    fb = st.slider(
+        "$f_b$", help="y frequency", min_value=0.1, max_value=10.0, step=0.1, value=1.5
+    )
+    d = st.slider(
+        "$d$",
+        help="x delta",
+        min_value=0.0,
+        max_value=2 * math.pi,
+        step=math.pi / 8,
+        value=math.pi / 4,
+    )
+    segments = st.slider(
+        "segments",
+        help=r"number of segments to draw within [0,2$\pi$) range",
+        min_value=20,
+        max_value=2000,
+        step=1,
+        value=500,
     )
     st.divider()
     st.title("Lissajous curves")
     st.write(DESC)
 
-
-t = time_points(100)
-a = 2
-b = 1
-fa = 1
-fb = 1.5
-d = 0
+t = time_points(segments)
 
 x = a * np.sin(2 * math.pi * fa * t + d)
 y = b * np.sin(2 * math.pi * fb * t)
