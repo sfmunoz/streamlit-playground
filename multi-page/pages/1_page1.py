@@ -1,24 +1,31 @@
 import streamlit as st
 
 
-def page_a():
-    st.set_page_config("page-1a")
-    st.title("page-1a")
-    st.write("page-1a")
+def page1(p):
+    st.set_page_config(f"page-1{p}")
+    st.title(f"page-1{p}")
+    st.write(f"page-1{p}")
 
 
-def page_b():
-    st.set_page_config("page-1b")
-    st.title("page-1b")
-    st.write("page-1b")
+def page_1a():
+    page1("a")
 
 
-page_names_to_funcs = {
-    "page-a": page_a,
-    "page-b": page_b,
-}
+def page_1b():
+    page1("b")
 
-demo_name = st.sidebar.selectbox(
-    "select a subpage", page_names_to_funcs.keys(), persist_state="session", key="page1"
+
+def page_1c():
+    page1("c")
+
+
+def page_1d():
+    page1("d")
+
+
+pages = {"page-1a": page_1a, "page-1b": page_1b, "page-1c": page_1c, "page-1d": page_1d}
+
+page_name = st.sidebar.selectbox(
+    "select a subpage", pages.keys(), persist_state="session", key="page1"
 )
-page_names_to_funcs[demo_name]()
+pages[page_name]()
